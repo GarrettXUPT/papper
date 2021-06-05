@@ -233,26 +233,26 @@ if __name__ == '__main__':
     end = time.time()
     print("the during time_nonlinearity is ", end - start)
     #
-    # start = time.time()
-    # print(bf.autoCorrelationMaxAbsolute())
-    # end = time.time()
-    # print("the during time_absolute_value is ", end - start)
-    #
-    # start = time.time()
-    # print(bf.differentialUniformValue())
-    # end = time.time()
-    # print("the during time_duf is ", end - start)
-    #
-    # start = time.time()
-    # print(bf.sBoxDegree())
-    # end = time.time()
-    # print("the during time_degree is ", end - start)
-
-
     start = time.time()
-    print(bf.S_BOX_MTO())
+    print(bf.autoCorrelationMaxAbsolute())
     end = time.time()
-    print("the during time_MTO is", end - start)
+    print("the during time_absolute_value is ", end - start)
+    
+    start = time.time()
+    print(bf.differentialUniformValue())
+    end = time.time()
+    print("the during time_duf is ", end - start)
+    
+    start = time.time()
+    print(bf.sBoxDegree())
+    end = time.time()
+    print("the during time_degree is ", end - start)
+
+
+    # start = time.time()
+    # print(bf.S_BOX_MTO())
+    # end = time.time()
+    # print("the during time_MTO is", end - start)
     #
     # start = time.time()
     # print(bf.S_BOX_RTO())
