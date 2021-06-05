@@ -249,11 +249,11 @@ if __name__ == '__main__':
     print("the during time_degree is ", end - start)
 
 
-    # start = time.time()
-    # print(bf.S_BOX_MTO())
-    # end = time.time()
-    # print("the during time_MTO is", end - start)
-    #
+    start = time.time()
+    print(bf.S_BOX_MTO())
+    end = time.time()
+    print("the during time_MTO is", end - start)
+    
     # start = time.time()
     # print(bf.S_BOX_RTO())
     # end = time.time()
