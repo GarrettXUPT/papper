@@ -26,7 +26,7 @@ def hexToBinary(hexList):
     AES S盒真值表
     :return f0-->f7的真值表组成的列表
 '''
-def S_BOX_TRUTHTABLE(TRUTHTABLE):
+def S_BOX_TRUTHTABLE(varsNum, TRUTHTABLE):
     hexTableList =[]
     for ele in TRUTHTABLE:
         hexTableList.append(ele.split(" "))
@@ -43,33 +43,17 @@ def S_BOX_TRUTHTABLE(TRUTHTABLE):
                 tmpList.append(int(elebinary))
         binaryList.append(tmpList)
     # print(binaryList[0])
-    f0TruthTableList = []
-    f1TruthTableList = []
-    f2TruthTableList = []
-    f3TruthTableList = []
-    f4TruthTableList = []
-    f5TruthTableList = []
-    f6TruthTableList = []
-    f7TruthTableList = []
-    for ele in binaryList:
-        f0TruthTableList.append(ele[7])
-        f1TruthTableList.append(ele[6])
-        f2TruthTableList.append(ele[5])
-        f3TruthTableList.append(ele[4])
-        f4TruthTableList.append(ele[3])
-        f5TruthTableList.append(ele[2])
-        f6TruthTableList.append(ele[1])
-        f7TruthTableList.append(ele[0])
-    resList = []
-    resList.append(f0TruthTableList)
-    resList.append(f1TruthTableList)
-    resList.append(f2TruthTableList)
-    resList.append(f3TruthTableList)
-    resList.append(f4TruthTableList)
-    resList.append(f5TruthTableList)
-    resList.append(f6TruthTableList)
-    resList.append(f7TruthTableList)
-    return resList
+
+    fTruthTableList = []
+    for i in range(varsNum):
+        fTruthTableList.append([])
+
+    binLen = len(binaryList)
+    for i in range(binLen):
+        for j in range(varsNum):
+            fTruthTableList[j].append(binaryList[i][varsNum - j - 1])
+
+    return fTruthTableList
 
 '''
     八元乘积
@@ -193,9 +177,8 @@ def S_BOX_nolinearityCompte(varsNum, WalshVectorList):
 '''
 def nonlinearity(varsNum, S_BOX_LIST, AlltruthTable, innerList):
     innerList = S_BOX_EightVars_innerProduct(varsNum, innerList)
-    truthTableList = S_BOX_TRUTHTABLE(S_BOX_LIST)
-    thetaList = AlltruthTable
-    WalshVectorList = S_Box_Walsh(varsNum, truthTableList, innerList, thetaList)
+    truthTableList = S_BOX_TRUTHTABLE(varsNum, S_BOX_LIST)
+    WalshVectorList = S_Box_Walsh(varsNum, truthTableList, innerList, AlltruthTable)
     return S_BOX_nolinearityCompte(varsNum, WalshVectorList)
 
 def translateHex(table):
